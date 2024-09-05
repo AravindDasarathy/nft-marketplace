@@ -10,12 +10,10 @@ import { metaMask } from 'wagmi/connectors';
 
 export const wagmiConfig = createConfig({
   chains: [sepolia],
-  connectors: [
-    metaMask()
-  ],
+  connectors: [metaMask()],
   transports: {
-    [sepolia.id]: http(),
-  },
+    [sepolia.id]: http()
+  }
 });
 
 // making buffer available globally

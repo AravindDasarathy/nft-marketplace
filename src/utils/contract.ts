@@ -20,7 +20,11 @@ try {
 }
 
 try {
-  MARKETPLACE_CONTRACT = new ethers.Contract(MARKETPLACE_CONTRACT_ADDRESS, NFTMarketplace.abi, signer);
+  MARKETPLACE_CONTRACT = new ethers.Contract(
+    MARKETPLACE_CONTRACT_ADDRESS,
+    NFTMarketplace.abi,
+    signer
+  );
 } catch (error) {
   console.error('Error initializing marketplace contract:', error);
 
@@ -36,25 +40,49 @@ export const getProvider = () => provider;
 export const getSigner = () => signer;
 
 export const createCollection = async (name: string, symbol: string) => {
-  const transaction = await FACTORY_CONTRACT.createCollection(name, symbol, PAYMENT_HANDLER_ADDRESS);
+  const transaction = await FACTORY_CONTRACT.createCollection(
+    name,
+    symbol,
+    PAYMENT_HANDLER_ADDRESS
+  );
   const receipt = await transaction.wait();
 
   return receipt.events[0].args;
-}
+};
 
 export const getCollections = () => FACTORY_CONTRACT.getCollections();
 
 export const createNft = (metadataUrl: string, paymentTokenAddress: string, price: number) =>
-  FACTORY_CONTRACT.createNFT(metadataUrl, paymentTokenAddress, ethers.utils.parseUnits(price.toString(), 18), {
-    gasLimit: 600000,
-  });
+  FACTORY_CONTRACT.createNFT(
+    metadataUrl,
+    paymentTokenAddress,
+    ethers.utils.parseUnits(price.toString(), 18),
+    {
+      gasLimit: 600000
+    }
+  );
 
-export const listErc1155 = (erc1155TokenAddress: string, tokenId: number, amount: number, price: number) =>
-  FACTORY_CONTRACT.listERC1155(erc1155TokenAddress, tokenId, amount, ethers.utils.parseUnits(price.toString(), 18), {
-    gasLimit: 600000,
-  });
+export const listErc1155 = (
+  erc1155TokenAddress: string,
+  tokenId: number,
+  amount: number,
+  price: number
+) =>
+  FACTORY_CONTRACT.listERC1155(
+    erc1155TokenAddress,
+    tokenId,
+    amount,
+    ethers.utils.parseUnits(price.toString(), 18),
+    {
+      gasLimit: 600000
+    }
+  );
 
-export const signMessage = async (metadataUrl: string, paymentTokenAddress: string, price: number) => {
+export const signMessage = async (
+  metadataUrl: string,
+  paymentTokenAddress: string,
+  price: number
+) => {
   const messageHash = ethers.utils.solidityKeccak256(
     ['string', 'address', 'uint256'],
     [metadataUrl, paymentTokenAddress, ethers.utils.parseUnits(price.toString(), 18)]
@@ -65,27 +93,49 @@ export const signMessage = async (metadataUrl: string, paymentTokenAddress: stri
 
   return {
     signature,
-    listNftSignature: await FACTORY_CONTRACT.listNFTSignature(metadataUrl, paymentTokenAddress,
-      ethers.utils.parseUnits(price.toString(), 18), signature, {
-      gasLimit: 600000,
-    })
-  }
-}
+    listNftSignature: await FACTORY_CONTRACT.listNFTSignature(
+      metadataUrl,
+      paymentTokenAddress,
+      ethers.utils.parseUnits(price.toString(), 18),
+      signature,
+      {
+        gasLimit: 600000
+      }
+    )
+  };
+};
 
-export const createGovernancePropsoal = async (metadataUrl: string, paymentTokenAddress: string, price: number) =>
-  FACTORY_CONTRACT.createProposal(metadataUrl, paymentTokenAddress, ethers.utils.parseUnits(price.toString(), 18), {
-    gasLimit: 600000,
-  });
+export const createGovernancePropsoal = async (
+  metadataUrl: string,
+  paymentTokenAddress: string,
+  price: number
+) =>
+  FACTORY_CONTRACT.createProposal(
+    metadataUrl,
+    paymentTokenAddress,
+    ethers.utils.parseUnits(price.toString(), 18),
+    {
+      gasLimit: 600000
+    }
+  );
 
 export const fetchAllNfts = async () => MARKETPLACE_CONTRACT.fetchAllNFTs();
 
-export const handlePurchaseErc20 = async (paymentTokenAddress: string, price: number, tokenId: number) => {
+export const handlePurchaseErc20 = async (
+  paymentTokenAddress: string,
+  price: number,
+  tokenId: number
+) => {
   const account = await signer.getAddress();
-  const paymentToken = new ethers.Contract(paymentTokenAddress, [
-    "function balanceOf(address owner) view returns (uint256)",
-    "function allowance(address owner, address spender) view returns (uint256)",
-    "function approve(address spender, uint256 value) public returns (bool)"
-  ], signer);
+  const paymentToken = new ethers.Contract(
+    paymentTokenAddress,
+    [
+      'function balanceOf(address owner) view returns (uint256)',
+      'function allowance(address owner, address spender) view returns (uint256)',
+      'function approve(address spender, uint256 value) public returns (bool)'
+    ],
+    signer
+  );
 
   const tokenBalance = await paymentToken.balanceOf(account);
   const allowance = await paymentToken.allowance(account, PAYMENT_HANDLER_ADDRESS);
@@ -108,9 +158,11 @@ export const handlePurchaseErc20 = async (paymentTokenAddress: string, price: nu
 
   console.log('Purchasing ERC20 NFT with price:', priceInWei.toString());
 
-  const transaction = await MARKETPLACE_CONTRACT.purchaseNFT(tokenId, { gasLimit: 500000 });
+  const transaction = await MARKETPLACE_CONTRACT.purchaseNFT(tokenId, {
+    gasLimit: 500000
+  });
   await transaction.wait();
-}
+};
 
 export const handlePurchaseErc1155 = async (price: number, amount: number, tokenId: number) => {
   const priceInWei = ethers.utils.parseUnits(price.toString(), 'ether');
@@ -124,24 +176,34 @@ export const handlePurchaseErc1155 = async (price: number, amount: number, token
     return;
   }
 
-  return MARKETPLACE_CONTRACT.purchaseERC1155(tokenId, amount,
-    {
-      value: priceInWei.mul(amount),
-      gasLimit: 500000
-    }
-  );
-}
+  return MARKETPLACE_CONTRACT.purchaseERC1155(tokenId, amount, {
+    value: priceInWei.mul(amount),
+    gasLimit: 500000
+  });
+};
 
-export const handlePurchaseErc20Signature = async (price: string, paymentTokenAddress: string, tokenId: number, sellerSignature: string) => {
+export const handlePurchaseErc20Signature = async (
+  price: string,
+  paymentTokenAddress: string,
+  tokenId: number,
+  sellerSignature: string
+) => {
   const account = await signer.getAddress();
   const priceInWei = ethers.utils.parseUnits(price.toString(), 18);
-  const messageHash = ethers.utils.solidityKeccak256(['uint256', 'uint256', 'address'], [tokenId, priceInWei, account]);
+  const messageHash = ethers.utils.solidityKeccak256(
+    ['uint256', 'uint256', 'address'],
+    [tokenId, priceInWei, account]
+  );
 
-  const paymentToken = new ethers.Contract(paymentTokenAddress, [
-    "function balanceOf(address owner) view returns (uint256)",
-    "function allowance(address owner, address spender) view returns (uint256)",
-    "function approve(address spender, uint256 value) public returns (bool)"
-  ], signer);
+  const paymentToken = new ethers.Contract(
+    paymentTokenAddress,
+    [
+      'function balanceOf(address owner) view returns (uint256)',
+      'function allowance(address owner, address spender) view returns (uint256)',
+      'function approve(address spender, uint256 value) public returns (bool)'
+    ],
+    signer
+  );
 
   const tokenBalance = await paymentToken.balanceOf(account);
   const allowance = await paymentToken.allowance(account, PAYMENT_HANDLER_ADDRESS);
@@ -160,15 +222,21 @@ export const handlePurchaseErc20Signature = async (price: string, paymentTokenAd
     console.log('Tokens approved successfully.');
   }
 
-  return MARKETPLACE_CONTRACT.purchaseNFTWithSignature(tokenId, priceInWei, account, sellerSignature,
-    { gasLimit: 500000  }
+  return MARKETPLACE_CONTRACT.purchaseNFTWithSignature(
+    tokenId,
+    priceInWei,
+    account,
+    sellerSignature,
+    { gasLimit: 500000 }
   );
-}
+};
 
 export const getProposalCounter = () => MARKETPLACE_CONTRACT.proposalCounter();
 
 export const getProposal = (proposalId: number) => MARKETPLACE_CONTRACT.proposals(proposalId);
 
-export const voteOnProposal = (proposalId: number) => MARKETPLACE_CONTRACT.voteOnProposal(proposalId);
+export const voteOnProposal = (proposalId: number) =>
+  MARKETPLACE_CONTRACT.voteOnProposal(proposalId);
 
-export const executeProposal = (proposalId: number) => MARKETPLACE_CONTRACT.executeProposal(proposalId);
+export const executeProposal = (proposalId: number) =>
+  MARKETPLACE_CONTRACT.executeProposal(proposalId);

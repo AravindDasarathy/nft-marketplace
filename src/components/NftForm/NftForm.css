@@ -16,11 +16,11 @@ label {
   font-weight: bold;
 }
 
-input[type="text"],
-input[type="number"],
+input[type='text'],
+input[type='number'],
 textarea,
 select,
-input[type="file"] {
+input[type='file'] {
   margin-bottom: 15px;
   padding: 8px;
   border: 1px solid #ccc;
@@ -29,7 +29,7 @@ input[type="file"] {
 
 button {
   padding: 10px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 4px;

@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ethers } from 'ethers';
-import { executeProposal, getProposal, getProposalCounter, getProvider, voteOnProposal } from '../../utils/contract';
+import {
+  executeProposal,
+  getProposal,
+  getProposalCounter,
+  getProvider,
+  voteOnProposal
+} from '../../utils/contract';
 
 export const Proposals = () => {
   const { address } = useParams<{ address: string }>();
@@ -12,7 +18,7 @@ export const Proposals = () => {
     const initializeContract = async () => {
       // Get current account
       try {
-        const accounts = await getProvider().send("eth_requestAccounts", []);
+        const accounts = await getProvider().send('eth_requestAccounts', []);
         setCurrentAccount(accounts[0]);
       } catch (error) {
         console.error('Error fetching current account:', error);
@@ -41,7 +47,7 @@ export const Proposals = () => {
             paymentToken: proposal.paymentToken,
             price: ethers.utils.formatUnits(proposal.price.toString(), 'ether'),
             votes: proposal.votes.toNumber(),
-            executed: proposal.executed,
+            executed: proposal.executed
           });
         }
 
@@ -88,8 +94,12 @@ export const Proposals = () => {
             <div>Price: {proposal.price} ETH</div>
             <div>Votes: {proposal.votes}</div>
             <div>Status: {proposal.executed ? 'Executed' : 'Pending'}</div>
-            <button onClick={() => handleVote(proposal.id)} disabled={proposal.executed}>Vote</button>
-            <button onClick={() => handleExecute(proposal.id)} disabled={proposal.executed}>Execute</button>
+            <button onClick={() => handleVote(proposal.id)} disabled={proposal.executed}>
+              Vote
+            </button>
+            <button onClick={() => handleExecute(proposal.id)} disabled={proposal.executed}>
+              Execute
+            </button>
           </div>
         ))}
       </div>

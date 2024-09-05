@@ -20,7 +20,7 @@ export const ViewNfts = () => {
     const initializeContract = async () => {
       // Get current account
       try {
-        const accounts = await getProvider().send("eth_requestAccounts", []);
+        const accounts = await getProvider().send('eth_requestAccounts', []);
         setCurrentAccount(accounts[0]);
       } catch (error) {
         console.error('Error fetching current account:', error);
@@ -37,31 +37,34 @@ export const ViewNfts = () => {
 
     try {
       const [nftItems, erc1155Items] = await fetchAllNfts();
-      const items = await Promise.all(nftItems.map(async (nft: any) => {
-        const tokenId = nft[0].toNumber(); // Convert BigNumber to number
-        const owner = nft[1];
-        const tokenURI = nft[2];
-        const paymentToken = nft[3];
-        const price = ethers.utils.formatUnits(nft[4].toString(), 'ether'); // Convert BigNumber to string and format as ether
-        const signature = nft[5]; // Add signature to fetched data
+      const items = await Promise.all(
+        nftItems.map(async (nft: any) => {
+          const tokenId = nft[0].toNumber(); // Convert BigNumber to number
+          const owner = nft[1];
+          const tokenURI = nft[2];
+          const paymentToken = nft[3];
+          const price = ethers.utils.formatUnits(nft[4].toString(), 'ether'); // Convert BigNumber to string and format as ether
+          const signature = nft[5]; // Add signature to fetched data
 
-        const meta = await fetch(tokenURI).then((response) => response.json());
-        const status = owner.toLowerCase() === currentAccount?.toLowerCase() ? 'sold' : 'available';
+          const meta = await fetch(tokenURI).then((response) => response.json());
+          const status =
+            owner.toLowerCase() === currentAccount?.toLowerCase() ? 'sold' : 'available';
 
-        return {
-          tokenId: tokenId,
-          owner: owner,
-          tokenURI: tokenURI,
-          paymentTokenAddress: paymentToken,
-          price: price,
-          imageUrl: meta.image, // Use image URL from metadata
-          nftName: meta.name,
-          nftDescription: meta.description,
-          status: status,
-          listingType: 'erc20',
-          signature: signature, // Include the signature in the returned data
-        };
-      }));
+          return {
+            tokenId: tokenId,
+            owner: owner,
+            tokenURI: tokenURI,
+            paymentTokenAddress: paymentToken,
+            price: price,
+            imageUrl: meta.image, // Use image URL from metadata
+            nftName: meta.name,
+            nftDescription: meta.description,
+            status: status,
+            listingType: 'erc20',
+            signature: signature // Include the signature in the returned data
+          };
+        })
+      );
 
       const erc1155ItemsProcessed = erc1155Items.map((item: any) => ({
         tokenId: item.tokenId.toNumber(),
@@ -73,7 +76,7 @@ export const ViewNfts = () => {
         imageUrl: '', // Add your image URL here if you have any, otherwise handle this in the render function
         nftName: 'ERC1155 Token',
         nftDescription: `Amount: ${item.amount}`,
-        status: item.owner.toLowerCase() === currentAccount?.toLowerCase() ? 'sold' : 'available',
+        status: item.owner.toLowerCase() === currentAccount?.toLowerCase() ? 'sold' : 'available'
       }));
 
       setErc20NftCollection(items);
@@ -90,9 +93,10 @@ export const ViewNfts = () => {
 
   const handlePurchase = async (tokenId: number, listingType: string) => {
     try {
-      const nft = listingType === 'erc20'
-        ? erc20NftCollection.find(nft => nft.tokenId === tokenId)
-        : erc1155NftCollection.find(nft => nft.tokenId === tokenId);
+      const nft =
+        listingType === 'erc20'
+          ? erc20NftCollection.find((nft) => nft.tokenId === tokenId)
+          : erc1155NftCollection.find((nft) => nft.tokenId === tokenId);
 
       if (!nft) {
         console.error('NFT not found');
@@ -126,7 +130,7 @@ export const ViewNfts = () => {
 
   const handlePurchaseWithSignature = async (tokenId: number, sellerSignature: string) => {
     try {
-      const nft = erc20NftCollection.find(nft => nft.tokenId === tokenId);
+      const nft = erc20NftCollection.find((nft) => nft.tokenId === tokenId);
       if (!nft) {
         console.error('NFT not found');
         return;
@@ -138,7 +142,12 @@ export const ViewNfts = () => {
         return;
       }
 
-      const transaction = await handlePurchaseErc20Signature(nft.price, nft.paymentTokenAddress, tokenId, sellerSignature);
+      const transaction = await handlePurchaseErc20Signature(
+        nft.price,
+        nft.paymentTokenAddress,
+        tokenId,
+        sellerSignature
+      );
 
       await transaction.wait();
       alert('NFT purchased successfully with signature!');
@@ -170,7 +179,9 @@ export const ViewNfts = () => {
               <div>Status: Sold</div>
             ) : (
               <>
-                <button onClick={() => handlePurchase(nft.tokenId, nft.listingType)}>Buy NFT</button>
+                <button onClick={() => handlePurchase(nft.tokenId, nft.listingType)}>
+                  Buy NFT
+                </button>
                 <div>
                   <input
                     type="text"
@@ -191,7 +202,9 @@ export const ViewNfts = () => {
             <div>{nft.nftName}</div>
             <div>{nft.nftDescription}</div>
             <div>{nft.amount} available</div>
-            <div>{nft.price} ETH (Total: {(nft.amount * nft.price).toFixed(4)} ETH)</div>
+            <div>
+              {nft.price} ETH (Total: {(nft.amount * nft.price).toFixed(4)} ETH)
+            </div>
             {nft.status === 'sold' ? (
               <div>Status: Sold</div>
             ) : (

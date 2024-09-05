@@ -6,4 +6,3 @@ export { Proposals } from './Proposals';
 export { CollectionOptions } from './CollectionOptions';
 export { default as ConnectWallet } from './Wallet';
 export { default as NftForm } from './NftForm';
-

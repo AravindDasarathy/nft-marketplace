@@ -28,14 +28,14 @@ const pinFileToIPFSRequest = async (data: FormData) => {
 
   const headers = {
     'Content-Type': 'multipart/form-data',
-    'pinata_api_key': pinataApiKey,
-    'pinata_secret_api_key': pinataSecretApiKey
+    pinata_api_key: pinataApiKey,
+    pinata_secret_api_key: pinataSecretApiKey
   };
 
   try {
     const response = await axios.post(url, data, {
       maxContentLength: Infinity,
-      headers,
+      headers
     });
 
     return response.data;
@@ -54,7 +54,9 @@ export const pinFileToIPFS = async (imageContent: string) => {
 };
 
 export const pinMetadataToIPFS = async (metadata: any) => {
-  const metadataBlob = new Blob([JSON.stringify(metadata)], { type: 'application/json' });
+  const metadataBlob = new Blob([JSON.stringify(metadata)], {
+    type: 'application/json'
+  });
   const metadataData = new FormData();
   metadataData.append('file', metadataBlob, 'metadata.json');
 

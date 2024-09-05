@@ -7,7 +7,9 @@ interface NFTFormProps {
 }
 
 export default function NFTForm(props: NFTFormProps) {
-  const [listingType, setListingType] = useState<'erc20' | 'erc1155' | 'signature' | 'governance'>('erc20');
+  const [listingType, setListingType] = useState<'erc20' | 'erc1155' | 'signature' | 'governance'>(
+    'erc20'
+  );
 
   const formik = useFormik({
     initialValues: {
@@ -48,25 +50,27 @@ export default function NFTForm(props: NFTFormProps) {
 
   const Addons = (listingType: any) => {
     const options = [
-      { value: "erc20", label: "ERC20 Payment" },
-      { value: "erc1155", label: "ERC1155 Listing" },
-      { value: "signature", label: "Signature" },
-      { value: "governance", label: "Governance Proposal" },
+      { value: 'erc20', label: 'ERC20 Payment' },
+      { value: 'erc1155', label: 'ERC1155 Listing' },
+      { value: 'signature', label: 'Signature' },
+      { value: 'governance', label: 'Governance Proposal' }
     ];
 
-    return <select
-      id="listingType"
-      name="listingType"
-      value={listingType}
-      onChange={handleListingTypeChange}
-      required
-    >
-      {options.map((option) => (
-        <option key={option.value} value={option.value}>
-          {option.label}
-        </option>
-      ))}
-    </select>
+    return (
+      <select
+        id="listingType"
+        name="listingType"
+        value={listingType}
+        onChange={handleListingTypeChange}
+        required
+      >
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    );
   };
 
   return (
@@ -135,13 +139,7 @@ export default function NFTForm(props: NFTFormProps) {
             required
           />
           <label htmlFor="image">Choose Image</label>
-            <input
-              id="image"
-              type="file"
-              accept="image/*"
-              onChange={handleImageUpload}
-              required
-            />
+          <input id="image" type="file" accept="image/*" onChange={handleImageUpload} required />
         </>
       )}
 
@@ -187,15 +185,7 @@ export default function NFTForm(props: NFTFormProps) {
           />
 
           <label htmlFor="image">Choose Image</label>
-          <input
-            id="image"
-            type="file"
-            accept="image/*"
-            onChange={handleImageUpload}
-            required
-          />
-
-
+          <input id="image" type="file" accept="image/*" onChange={handleImageUpload} required />
         </>
       )}
 
@@ -241,13 +231,7 @@ export default function NFTForm(props: NFTFormProps) {
           />
 
           <label htmlFor="image">Choose Image</label>
-          <input
-            id="image"
-            type="file"
-            accept="image/*"
-            onChange={handleImageUpload}
-            required
-          />
+          <input id="image" type="file" accept="image/*" onChange={handleImageUpload} required />
         </>
       )}
 

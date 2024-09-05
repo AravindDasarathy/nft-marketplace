@@ -18,9 +18,15 @@ const queryClient = new QueryClient();
 const NavBar = () => (
   <nav>
     <ul>
-      <li> <Link to="/">Home</Link> </li>
-      <li> <Link to="/create-collection">Create Collection</Link> </li>
-      <li> <Link to="/collections">View Collections</Link> </li>
+      <li>
+        <Link to="/">Home</Link>
+      </li>
+      <li>
+        <Link to="/create-collection">Create Collection</Link>
+      </li>
+      <li>
+        <Link to="/collections">View Collections</Link>
+      </li>
     </ul>
   </nav>
 );
@@ -28,9 +34,7 @@ const NavBar = () => (
 const Home = () => (
   <div className="App">
     <h1>Welcome to the NFT Marketplace</h1>
-    <p>
-      Use the navigation above to create a new NFT collection or view existing collections.
-    </p>
+    <p>Use the navigation above to create a new NFT collection or view existing collections.</p>
   </div>
 );
 

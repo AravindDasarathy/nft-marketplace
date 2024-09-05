@@ -2,9 +2,15 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { pinFileToIPFS, pinMetadataToIPFS } from '../../utils/pinata';
-import { createGovernancePropsoal, createNft, getNftFactoryContract, getSigner, listErc1155, signMessage } from '../../utils/contract';
+import {
+  createGovernancePropsoal,
+  createNft,
+  getNftFactoryContract,
+  getSigner,
+  listErc1155,
+  signMessage
+} from '../../utils/contract';
 import { NftForm } from '..';
-
 
 export const ListNft = () => {
   const { address } = useParams();
@@ -22,7 +28,7 @@ export const ListNft = () => {
       const metadata = {
         name: values.nftName,
         description: values.nftDescription,
-        image: imageUrl,
+        image: imageUrl
       };
 
       const metadataRes = await pinMetadataToIPFS(metadata);
@@ -38,7 +44,12 @@ export const ListNft = () => {
       if (values.listingType === 'erc20') {
         transaction = await createNft(metadataUrl, values.paymentTokenAddress, values.price);
       } else if (values.listingType === 'erc1155') {
-        transaction = await listErc1155(values.erc1155TokenAddress, values.tokenId, values.amount, values.price);
+        transaction = await listErc1155(
+          values.erc1155TokenAddress,
+          values.tokenId,
+          values.amount,
+          values.price
+        );
       } else if (values.listingType === 'signature') {
         const signObj = await signMessage(metadataUrl, values.paymentTokenAddress, values.price);
         const signature = signObj.signature;
@@ -49,12 +60,16 @@ export const ListNft = () => {
           status: 'available',
           tokenId: transaction.tokenId,
           owner: await getSigner().getAddress(),
-          signature: signature, // Ensure to store the signature
+          signature: signature // Ensure to store the signature
         };
 
         setNftCollection([...nftCollection, newNftItem]);
       } else if (values.listingType === 'governance') {
-        transaction = await createGovernancePropsoal(metadataUrl, values.paymentTokenAddress, values.price);
+        transaction = await createGovernancePropsoal(
+          metadataUrl,
+          values.paymentTokenAddress,
+          values.price
+        );
 
         alert('Governance proposal created successfully!');
       }
@@ -63,15 +78,19 @@ export const ListNft = () => {
 
       console.log('Transaction successful:', transaction.hash);
 
-      const tokenId = receipt.events && receipt.events[0] && receipt.events[0].args && receipt.events[0].args.tokenId
-        ? receipt.events[0].args.tokenId.toNumber()
-        : values.tokenId;
+      const tokenId =
+        receipt.events &&
+        receipt.events[0] &&
+        receipt.events[0].args &&
+        receipt.events[0].args.tokenId
+          ? receipt.events[0].args.tokenId.toNumber()
+          : values.tokenId;
 
       const newNftItem: any = {
         ...values,
         status: 'available',
         tokenId: tokenId,
-        owner: await getSigner().getAddress(),
+        owner: await getSigner().getAddress()
       };
 
       setNftCollection([...nftCollection, newNftItem]);

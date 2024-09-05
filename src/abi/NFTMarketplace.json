@@ -27,9 +27,7 @@
     {
       "type": "function",
       "name": "balanceOf",
-      "inputs": [
-        { "name": "owner", "type": "address", "internalType": "address" }
-      ],
+      "inputs": [{ "name": "owner", "type": "address", "internalType": "address" }],
       "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
       "stateMutability": "view"
     },
@@ -90,9 +88,7 @@
     {
       "type": "function",
       "name": "executeProposal",
-      "inputs": [
-        { "name": "proposalId", "type": "uint256", "internalType": "uint256" }
-      ],
+      "inputs": [{ "name": "proposalId", "type": "uint256", "internalType": "uint256" }],
       "outputs": [],
       "stateMutability": "nonpayable"
     },
@@ -140,9 +136,7 @@
     {
       "type": "function",
       "name": "getApproved",
-      "inputs": [
-        { "name": "tokenId", "type": "uint256", "internalType": "uint256" }
-      ],
+      "inputs": [{ "name": "tokenId", "type": "uint256", "internalType": "uint256" }],
       "outputs": [{ "name": "", "type": "address", "internalType": "address" }],
       "stateMutability": "view"
     },
@@ -223,9 +217,7 @@
     {
       "type": "function",
       "name": "ownerOf",
-      "inputs": [
-        { "name": "tokenId", "type": "uint256", "internalType": "uint256" }
-      ],
+      "inputs": [{ "name": "tokenId", "type": "uint256", "internalType": "uint256" }],
       "outputs": [{ "name": "", "type": "address", "internalType": "address" }],
       "stateMutability": "view"
     },
@@ -280,9 +272,7 @@
     {
       "type": "function",
       "name": "purchaseNFT",
-      "inputs": [
-        { "name": "tokenId", "type": "uint256", "internalType": "uint256" }
-      ],
+      "inputs": [{ "name": "tokenId", "type": "uint256", "internalType": "uint256" }],
       "outputs": [],
       "stateMutability": "nonpayable"
     },
@@ -341,9 +331,7 @@
     {
       "type": "function",
       "name": "supportsInterface",
-      "inputs": [
-        { "name": "interfaceId", "type": "bytes4", "internalType": "bytes4" }
-      ],
+      "inputs": [{ "name": "interfaceId", "type": "bytes4", "internalType": "bytes4" }],
       "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
       "stateMutability": "view"
     },
@@ -364,9 +352,7 @@
     {
       "type": "function",
       "name": "tokenURI",
-      "inputs": [
-        { "name": "tokenId", "type": "uint256", "internalType": "uint256" }
-      ],
+      "inputs": [{ "name": "tokenId", "type": "uint256", "internalType": "uint256" }],
       "outputs": [{ "name": "", "type": "string", "internalType": "string" }],
       "stateMutability": "view"
     },
@@ -384,18 +370,14 @@
     {
       "type": "function",
       "name": "transferOwnership",
-      "inputs": [
-        { "name": "newOwner", "type": "address", "internalType": "address" }
-      ],
+      "inputs": [{ "name": "newOwner", "type": "address", "internalType": "address" }],
       "outputs": [],
       "stateMutability": "nonpayable"
     },
     {
       "type": "function",
       "name": "voteOnProposal",
-      "inputs": [
-        { "name": "proposalId", "type": "uint256", "internalType": "uint256" }
-      ],
+      "inputs": [{ "name": "proposalId", "type": "uint256", "internalType": "uint256" }],
       "outputs": [],
       "stateMutability": "nonpayable"
     },
@@ -648,9 +630,7 @@
     {
       "type": "error",
       "name": "ECDSAInvalidSignatureLength",
-      "inputs": [
-        { "name": "length", "type": "uint256", "internalType": "uint256" }
-      ]
+      "inputs": [{ "name": "length", "type": "uint256", "internalType": "uint256" }]
     },
     {
       "type": "error",
@@ -677,58 +657,42 @@
     {
       "type": "error",
       "name": "ERC721InvalidApprover",
-      "inputs": [
-        { "name": "approver", "type": "address", "internalType": "address" }
-      ]
+      "inputs": [{ "name": "approver", "type": "address", "internalType": "address" }]
     },
     {
       "type": "error",
       "name": "ERC721InvalidOperator",
-      "inputs": [
-        { "name": "operator", "type": "address", "internalType": "address" }
-      ]
+      "inputs": [{ "name": "operator", "type": "address", "internalType": "address" }]
     },
     {
       "type": "error",
       "name": "ERC721InvalidOwner",
-      "inputs": [
-        { "name": "owner", "type": "address", "internalType": "address" }
-      ]
+      "inputs": [{ "name": "owner", "type": "address", "internalType": "address" }]
     },
     {
       "type": "error",
       "name": "ERC721InvalidReceiver",
-      "inputs": [
-        { "name": "receiver", "type": "address", "internalType": "address" }
-      ]
+      "inputs": [{ "name": "receiver", "type": "address", "internalType": "address" }]
     },
     {
       "type": "error",
       "name": "ERC721InvalidSender",
-      "inputs": [
-        { "name": "sender", "type": "address", "internalType": "address" }
-      ]
+      "inputs": [{ "name": "sender", "type": "address", "internalType": "address" }]
     },
     {
       "type": "error",
       "name": "ERC721NonexistentToken",
-      "inputs": [
-        { "name": "tokenId", "type": "uint256", "internalType": "uint256" }
-      ]
+      "inputs": [{ "name": "tokenId", "type": "uint256", "internalType": "uint256" }]
     },
     {
       "type": "error",
       "name": "OwnableInvalidOwner",
-      "inputs": [
-        { "name": "owner", "type": "address", "internalType": "address" }
-      ]
+      "inputs": [{ "name": "owner", "type": "address", "internalType": "address" }]
     },
     {
       "type": "error",
       "name": "OwnableUnauthorizedAccount",
-      "inputs": [
-        { "name": "account", "type": "address", "internalType": "address" }
-      ]
+      "inputs": [{ "name": "account", "type": "address", "internalType": "address" }]
     }
   ],
   "bytecode": {
@@ -798,16 +762,12 @@
         },
         { "inputs": [], "type": "error", "name": "ECDSAInvalidSignature" },
         {
-          "inputs": [
-            { "internalType": "uint256", "name": "length", "type": "uint256" }
-          ],
+          "inputs": [{ "internalType": "uint256", "name": "length", "type": "uint256" }],
           "type": "error",
           "name": "ECDSAInvalidSignatureLength"
         },
         {
-          "inputs": [
-            { "internalType": "bytes32", "name": "s", "type": "bytes32" }
-          ],
+          "inputs": [{ "internalType": "bytes32", "name": "s", "type": "bytes32" }],
           "type": "error",
           "name": "ECDSAInvalidSignatureS"
         },
@@ -833,58 +793,42 @@
           "name": "ERC721InsufficientApproval"
         },
         {
-          "inputs": [
-            { "internalType": "address", "name": "approver", "type": "address" }
-          ],
+          "inputs": [{ "internalType": "address", "name": "approver", "type": "address" }],
           "type": "error",
           "name": "ERC721InvalidApprover"
         },
         {
-          "inputs": [
-            { "internalType": "address", "name": "operator", "type": "address" }
-          ],
+          "inputs": [{ "internalType": "address", "name": "operator", "type": "address" }],
           "type": "error",
           "name": "ERC721InvalidOperator"
         },
         {
-          "inputs": [
-            { "internalType": "address", "name": "owner", "type": "address" }
-          ],
+          "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }],
           "type": "error",
           "name": "ERC721InvalidOwner"
         },
         {
-          "inputs": [
-            { "internalType": "address", "name": "receiver", "type": "address" }
-          ],
+          "inputs": [{ "internalType": "address", "name": "receiver", "type": "address" }],
           "type": "error",
           "name": "ERC721InvalidReceiver"
         },
         {
-          "inputs": [
-            { "internalType": "address", "name": "sender", "type": "address" }
-          ],
+          "inputs": [{ "internalType": "address", "name": "sender", "type": "address" }],
           "type": "error",
           "name": "ERC721InvalidSender"
         },
         {
-          "inputs": [
-            { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
-          ],
+          "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }],
           "type": "error",
           "name": "ERC721NonexistentToken"
         },
         {
-          "inputs": [
-            { "internalType": "address", "name": "owner", "type": "address" }
-          ],
+          "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }],
           "type": "error",
           "name": "OwnableInvalidOwner"
         },
         {
-          "inputs": [
-            { "internalType": "address", "name": "account", "type": "address" }
-          ],
+          "inputs": [{ "internalType": "address", "name": "account", "type": "address" }],
           "type": "error",
           "name": "OwnableUnauthorizedAccount"
         },
@@ -1143,15 +1087,11 @@
           "name": "approve"
         },
         {
-          "inputs": [
-            { "internalType": "address", "name": "owner", "type": "address" }
-          ],
+          "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }],
           "stateMutability": "view",
           "type": "function",
           "name": "balanceOf",
-          "outputs": [
-            { "internalType": "uint256", "name": "", "type": "uint256" }
-          ]
+          "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }]
         },
         {
           "inputs": [
@@ -1166,9 +1106,7 @@
           "stateMutability": "nonpayable",
           "type": "function",
           "name": "createNFT",
-          "outputs": [
-            { "internalType": "uint256", "name": "", "type": "uint256" }
-          ]
+          "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }]
         },
         {
           "inputs": [
@@ -1185,9 +1123,7 @@
           "name": "createProposal"
         },
         {
-          "inputs": [
-            { "internalType": "uint256", "name": "", "type": "uint256" }
-          ],
+          "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
           "stateMutability": "view",
           "type": "function",
           "name": "erc1155Items",
@@ -1204,15 +1140,11 @@
           ]
         },
         {
-          "inputs": [
-            { "internalType": "uint256", "name": "", "type": "uint256" }
-          ],
+          "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
           "stateMutability": "view",
           "type": "function",
           "name": "erc1155TokenIds",
-          "outputs": [
-            { "internalType": "uint256", "name": "", "type": "uint256" }
-          ]
+          "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }]
         },
         {
           "inputs": [
@@ -1304,15 +1236,11 @@
           ]
         },
         {
-          "inputs": [
-            { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
-          ],
+          "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }],
           "stateMutability": "view",
           "type": "function",
           "name": "getApproved",
-          "outputs": [
-            { "internalType": "address", "name": "", "type": "address" }
-          ]
+          "outputs": [{ "internalType": "address", "name": "", "type": "address" }]
         },
         {
           "inputs": [
@@ -1353,23 +1281,17 @@
           "stateMutability": "nonpayable",
           "type": "function",
           "name": "listNFTSignature",
-          "outputs": [
-            { "internalType": "uint256", "name": "", "type": "uint256" }
-          ]
+          "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }]
         },
         {
           "inputs": [],
           "stateMutability": "view",
           "type": "function",
           "name": "name",
-          "outputs": [
-            { "internalType": "string", "name": "", "type": "string" }
-          ]
+          "outputs": [{ "internalType": "string", "name": "", "type": "string" }]
         },
         {
-          "inputs": [
-            { "internalType": "uint256", "name": "", "type": "uint256" }
-          ],
+          "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
           "stateMutability": "view",
           "type": "function",
           "name": "nftItems",
@@ -1391,20 +1313,14 @@
           "stateMutability": "view",
           "type": "function",
           "name": "owner",
-          "outputs": [
-            { "internalType": "address", "name": "", "type": "address" }
-          ]
+          "outputs": [{ "internalType": "address", "name": "", "type": "address" }]
         },
         {
-          "inputs": [
-            { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
-          ],
+          "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }],
           "stateMutability": "view",
           "type": "function",
           "name": "ownerOf",
-          "outputs": [
-            { "internalType": "address", "name": "", "type": "address" }
-          ]
+          "outputs": [{ "internalType": "address", "name": "", "type": "address" }]
         },
         {
           "inputs": [],
@@ -1424,14 +1340,10 @@
           "stateMutability": "view",
           "type": "function",
           "name": "proposalCounter",
-          "outputs": [
-            { "internalType": "uint256", "name": "", "type": "uint256" }
-          ]
+          "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }]
         },
         {
-          "inputs": [
-            { "internalType": "uint256", "name": "", "type": "uint256" }
-          ],
+          "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
           "stateMutability": "view",
           "type": "function",
           "name": "proposals",
@@ -1458,9 +1370,7 @@
           "name": "purchaseERC1155"
         },
         {
-          "inputs": [
-            { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
-          ],
+          "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }],
           "stateMutability": "nonpayable",
           "type": "function",
           "name": "purchaseNFT"
@@ -1534,29 +1444,21 @@
           "stateMutability": "view",
           "type": "function",
           "name": "symbol",
-          "outputs": [
-            { "internalType": "string", "name": "", "type": "string" }
-          ]
+          "outputs": [{ "internalType": "string", "name": "", "type": "string" }]
         },
         {
           "inputs": [],
           "stateMutability": "view",
           "type": "function",
           "name": "tokenCounter",
-          "outputs": [
-            { "internalType": "uint256", "name": "", "type": "uint256" }
-          ]
+          "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }]
         },
         {
-          "inputs": [
-            { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
-          ],
+          "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }],
           "stateMutability": "view",
           "type": "function",
           "name": "tokenURI",
-          "outputs": [
-            { "internalType": "string", "name": "", "type": "string" }
-          ]
+          "outputs": [{ "internalType": "string", "name": "", "type": "string" }]
         },
         {
           "inputs": [
@@ -1569,9 +1471,7 @@
           "name": "transferFrom"
         },
         {
-          "inputs": [
-            { "internalType": "address", "name": "newOwner", "type": "address" }
-          ],
+          "inputs": [{ "internalType": "address", "name": "newOwner", "type": "address" }],
           "stateMutability": "nonpayable",
           "type": "function",
           "name": "transferOwnership"
