@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 contract PaymentHandler {
     struct PaymentInfo {
         address paymentToken; // ERC20 token address for payment
-        uint256 price;        // Price in ERC20 tokens
+        uint256 price; // Price in ERC20 tokens
     }
 
     mapping(uint256 => PaymentInfo) public paymentInfos; // { tokenId: paymentToken, price }
@@ -14,10 +14,7 @@ contract PaymentHandler {
     constructor() {}
 
     function setPaymentInfo(uint256 tokenId, address paymentToken, uint256 price) external {
-        paymentInfos[tokenId] = PaymentInfo({
-            paymentToken: paymentToken,
-            price: price
-        });
+        paymentInfos[tokenId] = PaymentInfo({paymentToken: paymentToken, price: price});
     }
 
     function processPayment(uint256 tokenId, address buyer, address recipient) external {

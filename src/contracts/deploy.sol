@@ -14,7 +14,6 @@ contract DeployContracts is Script {
         PaymentHandler paymentHandler = new PaymentHandler();
         console.log("PaymentHandler deployed to:", address(paymentHandler));
 
-
         NFTFactory nftFactory = new NFTFactory();
         console.log("NFTFactory deployed to:", address(nftFactory));
 

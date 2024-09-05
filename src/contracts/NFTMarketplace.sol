@@ -10,6 +10,7 @@ import "@openzeppelin/contracts/utils/cryptography/MessageHashUtils.sol";
 
 contract NFTMarketplace is ERC721URIStorage, Ownable {
     using ECDSA for bytes32;
+
     uint256 public tokenCounter;
     PaymentHandler public paymentHandler;
 
@@ -61,7 +62,11 @@ contract NFTMarketplace is ERC721URIStorage, Ownable {
         paymentHandler = PaymentHandler(paymentHandlerAddress);
     }
 
-    function createNFT(string memory tokenURI, address paymentToken, uint256 price) public onlyOwner returns (uint256) {
+    function createNFT(string memory tokenURI, address paymentToken, uint256 price)
+        public
+        onlyOwner
+        returns (uint256)
+    {
         uint256 newItemId = tokenCounter;
         _safeMint(msg.sender, newItemId);
         _setTokenURI(newItemId, tokenURI);
@@ -86,18 +91,17 @@ contract NFTMarketplace is ERC721URIStorage, Ownable {
         require(tokenAddress != address(0), "Invalid token address");
         require(amount > 0, "Amount must be greater than zero");
 
-        erc1155Items[tokenId] = ERC1155Item({
-            tokenId: tokenId,
-            owner: msg.sender,
-            tokenAddress: tokenAddress,
-            amount: amount,
-            price: price
-        });
+        erc1155Items[tokenId] =
+            ERC1155Item({tokenId: tokenId, owner: msg.sender, tokenAddress: tokenAddress, amount: amount, price: price});
 
         erc1155TokenIds.push(tokenId);
     }
 
-    function listNFTSignature(string memory tokenURI, address paymentToken, uint256 price, bytes memory signature) public onlyOwner returns (uint256) {
+    function listNFTSignature(string memory tokenURI, address paymentToken, uint256 price, bytes memory signature)
+        public
+        onlyOwner
+        returns (uint256)
+    {
         uint256 newItemId = tokenCounter;
         _safeMint(msg.sender, newItemId);
         _setTokenURI(newItemId, tokenURI);
