@@ -4,7 +4,7 @@
 pragma solidity ^0.8.0;
 
 import "forge-std/Script.sol";
-import "../src/MyERC1155Token.sol";
+import "./MyERC1155Token.sol";
 
 contract DeployERC1155 is Script {
     function run() external {
